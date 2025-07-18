@@ -1,0 +1,29 @@
+# 	•	각각은 일종의 “설명서”(메타데이터·의존성·빌드법)라 생각하면 됩니다.
+# 	•	Poetry는 이 정보로 가상환경을 만들고, 어디서 코드를 가져올지, 무슨 라이브러리가 필요한지 자동으로 설정합니다.
+
+# 프로젝트 메타 정보 (이름, 버전, 설명 등)
+# 	•	`name`: 프로젝트 이름(폴더/패키지명과 유사하게 맞추는 것이 좋음)
+# 	•	`version`: 버전 정보(처음이면 0.1.0)
+#	•	`description`: 짧은 한 줄 설명
+#	•	`packages`: 포함할 패키지 디렉토리 명시(소스코드가 어디 있는지 알려줌)
+[tool.poetry]
+name = "crawler-practice"
+version = "0.1.0"
+description = "Airflow 웹 크롤러 프로젝트"
+packages = [{ include = "crawler_practice" }]
+
+
+# 실제 코드 실행에 필요한 라이브러리 명시 
+#	•	각 항목(`python`, `requests`, `apache-airflow`)은 이 프로젝트가 동작하는 데 꼭 필요한 외부 라이브러리와 그 버전 범위입니다.
+#	•	Poetry는 여기 명시된 걸 보고 자동으로 가상환경을 만들고 패키지를 설치합니다.
+[tool.poetry.dependencies]
+python = ">=3.9,<3.13"
+selenium = "^4.0.0"
+beautifulsoup4 = "^4.10.0"
+requests = "^2.31.0"
+apache-airflow-providers-docker = "^4.0.0"
+
+# Poetry가 패키지 빌드할 때 필요한 설정
+[build-system] 
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
